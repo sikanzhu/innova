@@ -1,0 +1,2 @@
+# innova
+Innova is a game server framework. It is designed to run a endless world in a huge server cluster. Benefit to it is unique Area of Interest algorithm, developers can focus on logic, and the framework will do the dirty work, including data transferring, updating and remote process call. Innova abstracts the virtual world with static objects and actors, then logic programmers can focus on logistic structure and world localization. While physical structure of servers and localization can be handled by server architects.
