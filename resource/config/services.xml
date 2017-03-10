@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<note>
+	<service name="AllInOne">
+		<plugin name="World" package="innova"/>
+		<plugin name="Serve" package="innova"/>
+		<plugin name="Gate" package="innova"/>
+		<plugin name="Login" package="innova"/>
+		<plugin name="FakePlayer" package="innova.player"/>
+		<plugin name="Data" package="innova.utility"/>
+		<plugin name="RegionCleaner" package="innova"/>
+	</service>
+	
+	<service name="Test">
+		<plugin name="World" package="innova"/>
+		<plugin name="Gate" package="innova"/>
+		<plugin name="Serve" package="innova"/>
+		<plugin name="FakePlayer" package="innova.player"/>
+		<plugin name="RegionCleaner" package="innova"/>
+	</service>
+
+	<service name="Server">
+		<plugin name="World" package="innova"/>
+		<plugin name="Gate" package="innova"/>
+		<plugin name="Serve" package="innova"/>
+		<plugin name="RegionCleaner" package="innova"/>
+	</service>
+
+	<service name="Register">
+		<plugin name="Register" package="innova.demo"/>
+	</service>
+</note>

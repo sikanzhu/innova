@@ -1,0 +1,90 @@
+// Copyright (c) 2017, Sikan Zhu
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+// 
+// * Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+// 
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution.
+// 
+// * Neither the name of Sikan Zhu nor the names of its
+//   contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY SIKAN ZHU AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL SIKAN ZHU OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+syntax = "proto3";
+
+package innova.common;
+
+// basic primitive types
+message Float2
+{
+	float x = 1;
+	float y = 2;
+}
+
+message Int2
+{
+	int32 x = 1;
+	int32 y = 2;
+}
+
+message Float3
+{
+	float x = 1;
+	float y = 2;
+	float z = 3;
+}
+
+message Int3
+{
+	int32 x = 1;
+	int32 y = 2;
+	int32 z = 3;
+}
+
+message Float4
+{
+	float x = 1;
+	float y = 2;
+	float z = 3;
+	float w = 4;
+}
+
+message Int4
+{
+	int32 x = 1;
+	int32 y = 2;
+	int32 z = 3;
+	int32 w = 4;
+}
+
+message Quaternion
+{
+	float i = 1;
+	float j = 2;
+	float k = 3;
+	float s = 4;
+}
+
+message Matrix4
+{
+	Float4 r0 = 1;
+	Float4 r1 = 2;
+	Float4 r2 = 3;
+	Float4 r3 = 4;
+}

@@ -1,0 +1,10 @@
+Gathering
+	Mining
+	
+Architectures
+	DesignerHouse
+	Workbench
+	Factory
+	Vehicle Assembler
+	Building House
+

@@ -1,0 +1,128 @@
+#Logic Elements
+========
+These logic elements consist the virtual world.
+They are not limited or fixed to any physical server or client.
+Their data may spread over the entire network of server cluster and clients.
+
+	Region
+	--------
+		5D Area of Interest(Pomelo, BigWorld have different implementation).
+		How to determine Region? Physical position, Logic affair, Load balance.
+		
+	Account
+	-------
+		Account is registered by user.
+		It has AccountID, Account Name and Password.
+		The Login Server use Account information to identify a user.
+		An Account may contain one or more Players.
+		
+	Actor
+	--------
+		Actor is basic managed element in the virtual world.
+		That means an Actor can not be split into smaller atoms.
+		An Actor has its own properties and configuration.
+		The Actor is more like "GameObject" in Unity3D or "Actor" in UnrealEngine4.
+		
+		Actor may be controlled by user or Update Server.
+		When an Actor is controlled by a user, it is a Player Controlled.
+		When an Actor is controlled by Update Server, it is a Non-player Controlled(NPC).
+		
+	Player
+	--------
+		A Player is a special Actor. 
+		It is a clue that link Account with Actors.
+		Every time a user login with his Account, a list of Player will be shown to the user.
+		Then the user can choose which Player to enter the virtual world.
+		
+		From a Player, the user can also find other actors that he owns.
+		For example, a hunter may have a pet. Then the hunter is a Player and his pet can be obtained from the hunter.
+		However, Innova does not care how the Player find his pet. This information is managed by game developer.
+		
+	Agent
+	--------
+		An Agent is a mirror of Actor in Update Servers or clients.
+		It reflects the true Actor in Update Server or client who updates the Actor.
+		
+		Innova will create or destroy Agents automatically.
+		But be aware that the Agents are constant. Which means you can not modify their status, they are read-only.
+		The only way to affect the agents is sending Operations.
+	
+	Operation
+	--------
+		Operation looks like Remote Process Call.
+		It is used to affect other actors that the Update Server or client does not control.
+		This process is asynchronous.
+		
+		For example, you may shoot a monster, while the monster is controlled by a Update Server. Then you write a Operation to Gate, and Gate will record the Operation in Redis.
+		The Update Server will fetch the Operation and reduce the monster's health, then update the health Property in Redis.
+		
+		So you can write Operation, and affect other Actor without knowing which Update Server or client controls it.
+		And the updated Property of the Actor will spread over the entire server cluster and clients.
+	
+	Property
+	--------
+		Property contains some information of an Actor. Not only a Update Server or a client process the Actor's Property, but also other Update Servers and clients need to know the current Property.
+		So Properties should be synchronized between Update Server s and clients.
+		
+		Due to Innova's unique Area of Interest algorithm, only the latest status of Property will be sent to Update Servers and clients.
+		
+		An Actor may have several different type(PTYPE) of Property to describe the Actor.
+	
+	Config
+	--------
+		Config contains some information of an Actor. Only the Update Server or client, who controls the Actor, may have the right to access the Config of the Actor.
+		So Config will not be sent to any other Update Server or client.
+	
+#Architecture
+========
+	World Server
+	--------
+	Login Server
+	--------
+	Gate Server
+	--------
+	Update Server
+	--------
+		Why not "Region Server"?
+		Because "Region" is a logic separation of the entire virtual game world.
+		Update Servers do not need be determined by the logic regions.
+		Instead, a Update Server may serve several actors in a region, while another Update Server may serve the rest actors.
+		And a Update Server may serve several different regions concurrently.
+		The World Server will distribute actors to Update Servers according to their load.
+		
+	Redis
+	--------
+	Database
+	--------
+	Clients
+	--------
+	
+#Long Interval Tick and Time Magic. 
+========
+	Versus BigWorld's "Violate and Non-Violate Properties".
+	--------
+	State oriented.
+	--------
+	
+#Plugins
+========
+
+#ShardedRedisPool. Why not Redis Cluster.
+========
+	Redis Cluster does not supports Pipeline.
+
+#Unity3D demo
+========
+	Unity3D is single thread.
+	--------
+	
+#UnrealEngine4 demo
+========
+	UnrealEngine4 is single thread.
+	--------
+	
+#Optimize of Gate.
+========
+
+#Optimize of Redis.
+========

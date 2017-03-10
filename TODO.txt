@@ -1,0 +1,51 @@
+* Login Server
+* Login user interface
+* Git user name.
+* GatePlayer.java should be a library, so that UpdateServer can skip Gate, and communicate with Redis directly by using the library.
+* Cache Config in Redis for database.
+* JedisPoolConfig
+* Gate should use ShardedJedisPool to utility multiple Redis server. These servers are not connected as cluster.
+* Update Servers.
+* Update Instances.
+* Define World File.
+* Generate World File, which contains all the actors and statics that are grouped in regions.
+Theoretically actors need not be grouped by region. Because we can use update server to manage actors one by one.
+But the World Server will cost a lot time to distribute the actors to Update Servers.
+So we group the actors in regions. Then the World Server just distribute the regions to Update Servers.
+The Update Servers needs statics and actors to do physics simulation.
+So due to Local Effect, if we group the actors and statics in regions,
+the Update Servers can load as few statics as possible.
+* Measure Time Magic latency t2.
+* Server/Client packages should be buffered when pending writing.
+
+* Choose Player ID by UI.
+* Report data miss in Redis and database.
+* Operation should be linked with source and destination Player.
+* Register Tool.
+* Redefine ActorProperty { long , int32 }
+* Clean TryPlayerStub.
+* AgentManagement create, update and destroys agents right on callback.
+* Choose Player ID by Environment.
+* Check "Add"s of Dictionary in Unity3D.
+* Reduce locks in Update thread.
+* Make Unity3D message processing in Update thread.
+* Read Config from SQLite, then transfer.
+* Transfer and persist Config.
+* Register Server.
+* Gate should use JedisPool to enable lock-less Jedis connection.
+* Separate Property, Config, Operation from ToRedis.
+* Store Config in Redis temporary.
+* Design SQL table of Account
+* Design SQL table of Player
+* Try Java SQLite.
+* Tidy PlayerStub.
+* Game Develop Work Flow.
+* World server synchronize Gates.
+* Measure Time Magic latency t1.
+* Update time magic: Time Magic V3.
+* Update time magic: Anisotropy of Read and Write between Player and Gate.
+* Server/Client packages should be split into 1.5KB fragments.
+* Use "override" properly in Server.Client.
+* How about Redisson? 
+easy to use, thread-safe, has distributed lock.
+no pipe, no transaction, no cluster.

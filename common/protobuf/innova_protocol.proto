@@ -1,0 +1,211 @@
+// Copyright (c) 2017, Sikan Zhu
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+// 
+// * Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+// 
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution.
+// 
+// * Neither the name of Sikan Zhu nor the names of its
+//   contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY SIKAN ZHU AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL SIKAN ZHU OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+// head
+syntax = "proto3";
+
+import "innova_common.proto";
+
+package innova.protocol;
+
+// alias
+message Region
+{
+	string index = 1;
+}
+
+message RegionIdPair
+{
+	Region region = 1;
+	int64 id = 2;
+}
+
+message IdPtype
+{
+	int64 id = 1;
+	int32 ptype = 2;
+}
+
+message IdCtype
+{
+	int64 id = 1;
+	int32 ctype = 2;
+}
+
+message IdCtypeData
+{
+	int64 id = 1;
+	int32 ctype = 2;
+	bytes data = 3;
+}
+
+message IdPtypeData
+{
+	int64 id = 1;
+	int32 ptype = 2;
+	bytes data = 3;
+}
+
+message Actor
+{
+	int64 id = 1;
+	repeated int32 ptypes = 2;
+	repeated bytes pdatas = 3;
+	
+	// Any time the player's Config changes,
+	// it will be sent to Gate,
+	// and the new Config will be recorded into database
+	repeated int32 ctypes = 4;
+	repeated bytes cdatas = 5;
+}
+
+message ActorList
+{
+	repeated Actor actors = 1;
+}
+
+message RegionActorPair
+{
+	Region region = 1;
+	Actor actor = 2;
+}
+
+message IdList
+{
+	repeated int64 ids = 1;
+}
+
+message Operation
+{
+	int64 src = 1;
+	int64 dest = 2;
+	int32 ptype = 3;
+	bytes data = 4;
+}
+
+// packages
+message PlayerToGate
+{
+	enum ETYPE
+	{
+		NULL = 0;
+		MESSAGE = 1;
+		NUM = 2;
+	}
+	
+	ETYPE type = 1;
+	int32 magic_number = 2;
+	
+	// watching regions
+	repeated Region watching_regions = 101;
+	
+	// actors enter regions, and request operations on the actor
+	repeated Region entered_regions = 201;
+	repeated ActorList entered_actors = 202;
+	
+	// actors exit regions
+	repeated Region exited_regions = 401;
+	repeated IdList exited_actors = 402;
+	
+	// actors update
+	repeated Actor update_actors = 301;
+	
+	// push operations that affect others
+	repeated Operation push_operations = 501;
+		
+	// request Property
+	repeated IdPtype request_property = 601;
+
+	// request Config
+	repeated IdCtype request_config = 602;
+}
+
+message GateToPlayer
+{
+	enum ETYPE
+	{
+		NULL = 0;
+		MESSAGE = 1;
+		NUM = 2;
+	}
+	
+	ETYPE type = 1;
+	int64 world_time = 2;
+	
+	// actors exit region
+	repeated RegionIdPair exited = 101;
+	
+	// actors update
+	repeated RegionActorPair updated = 201;
+	
+	// operations on the actors
+	repeated Operation operations = 301;
+		
+	// response Property
+	repeated IdPtypeData response_property = 401;
+
+	// response Config
+	repeated IdCtypeData response_config = 402;
+}
+
+message LoginToPlayer
+{
+	enum ETYPE
+	{
+		ACCEPT = 0;
+	}
+	ETYPE type = 1;
+}
+
+message PlayerToLogin
+{
+	enum ETYPE
+	{
+		LOGIN = 0;
+	}
+	ETYPE type = 1;
+}
+
+message WorldWrite
+{
+	enum ETYPE
+	{
+		PING = 0;
+	}
+	ETYPE type = 1;
+	int64 world_time = 2;
+}
+
+message WorldRead
+{
+	enum ETYPE
+	{
+		PONG = 0;
+	}
+	ETYPE type = 1;
+}
