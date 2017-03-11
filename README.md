@@ -6,14 +6,12 @@ Innova abstracts the virtual world with static objects and actors, then logic pr
   
 ========  
 #Why a new framework?  
---------  
 ## A good idea make things simple.  
 There are many frameworks that enable game developer to make wonderful game rapidly.  
 But if you read their features, they always talk about load balance, area of interest, scale-ability, hot reload, fault tolerance and so on.  
 We can not deny that these features are very very important. But before the well-known features, why shouldn't we take a look at the architecture.  
 A better architecture can achieve these feature much easier, and can be much more convenient for developers to build better games.  
 
---------  
 ## "Standing on the shoulders of giants."  
 Thanks to C/C++, Java, Redis, Jedis, libevent, Google's Protocol Buffer, Apache Foundation, SQLite and many other open source projects, we could have a chance to build a fast and reliable new framework.  
 Thanks to Pomelo, Skynet, NoahFrame, KDEngine and many other framework or engines, these fabulous works inspired me a lot and shared a lot of priceless experience.  
@@ -71,17 +69,17 @@ At last, play with Unity.
   
 ========  
 #Innova internals  
-.\bin                          compiled Innova Server. The server can also be started by "bin/innova_demo_server/start_innova.bat".  
-.\common                   common files used by server and client.  
-.\common\protobuf       protobuf files.  
-.\demo                       demo files.  
-.\demo\common           common files used by demo server and client.  
-.\demo\server             demo server project.  
-.\demo\unity3d            demo client project of Unity3D.  
-.\doc                         documents.<TODO need to be organized>  
-.\resource                  resources, most of these files are used by server.  
-.\server                     Innova server framework. <TODO I will make it a configurable process in the future.>  
-.\thirdparty                third-party dependency.  
+.\bin..........................compiled Innova Server. The server can also be started by "bin/innova_demo_server/start_innova.bat".  
+.\common...................common files used by server and client.  
+.\common\protobuf.......protobuf files.  
+.\demo.......................demo files.  
+.\demo\common...........common files used by demo server and client.  
+.\demo\server.............demo server project.  
+.\demo\unity3d............demo client project of Unity3D.  
+.\doc.........................documents.<TODO need to be organized>  
+.\resource..................resources, most of these files are used by server.  
+.\server.....................Innova server framework. <TODO I will make it a configurable process in the future.>  
+.\thirdparty................third-party dependency.  
   
 Database tables of Innova  
 <TODO to be explained>  
@@ -89,6 +87,12 @@ Database tables of Innova
 Redis data structures of Innova  
 <TODO to be explained>  
   
+========  
+#Innova Architecture  
+<img src="https://github.com/sikanzhu/innova/blob/SikanZhu/doc/innova/A4a%20Architecture%20A.png">
+<img src="https://github.com/sikanzhu/innova/blob/SikanZhu/doc/innova/A4b%20Architecture%20B.png">
+<img src="https://github.com/sikanzhu/innova/blob/SikanZhu/doc/innova/A4c%20Architecture%20C.png">
+
 ========  
 #License  
 The Innova project is currently available under the 3-Clause BSD License.  
