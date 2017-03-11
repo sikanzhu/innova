@@ -1,46 +1,41 @@
-#Why new framework
 ========
-	An idea make things simple<TODO more detail in Features >.
-	--------
-	
 #Why Java
-========
-	Balance of performance and ease to develop.
 	--------
-	Java is bad: contains( final Object )?
+	##Balance of performance and ease to develop.
 	--------
+	##Java is bad: contains( final Object )?
 	
+========
 #Why not C++
-========
-	Most of the code should be in Java.
+	##Most of the code should be in Java.
 	--------
-	GatePlayer should be implemented in C++ and JNI to improve performance.
+	##GatePlayer should be implemented in C++ and JNI to improve performance.
 	--------
 	
+========
 #Why not Erlang
-========
 
+========
 #Why not other framework or engines?
-========
-	BigWorld
 	--------
-	Pomelo
+	##BigWorld
 	--------
-	Skynet
+	##Pomelo
 	--------
-	NoahFramework
+	##Skynet
 	--------
-	KBEngine
+	##NoahFrame
 	--------
+	##KBEngine
 	
+========
 #Why Redis
-========
-	Fast distributed data cache
 	--------
-	Redundant
+	##Fast distributed data cache
 	--------
+	##Redundant
 	
-#Why SQLite
 ========
-	No reason, just small and convenient to implement a demo.
+#Why SQLite
 	--------
+	No reason, just small and convenient to implement a demo.

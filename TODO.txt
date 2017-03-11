@@ -1,8 +1,9 @@
 * Login Server
 * Login user interface
 * Git user name.
-* GatePlayer.java should be a library, so that UpdateServer can skip Gate, and communicate with Redis directly by using the library.
-* Cache Config in Redis for database.
+* GatePlayer.java should be a c library, so that UpdateServer can skip Gate, and communicate with Redis directly by using the library.
+* PlayerStub.cs should be a c library, so that Unity3D, UnrealEngine4 or any other engine can share the same code.
+* Cache Config in Redis for database? Or Cache server that cache Config for database?
 * JedisPoolConfig
 * Gate should use ShardedJedisPool to utility multiple Redis server. These servers are not connected as cluster.
 * Update Servers.
